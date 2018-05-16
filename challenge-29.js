@@ -64,19 +64,13 @@ var aplication =( function () {
       var $fragmentCar = document.createDocumentFragment();
       var $tr = document.createElement('tr');
       var $tdImage = document.createElement('td');
-      var $tdMarcaModel = document.createElement('td');
-      var $tdCor = document.createElement('td');
-      var $tdAno = document.createElement('td');
-      var $tdPlaca = document.createElement('td');     
-      var $image = document.createElement('img');
-
-      $image.setAttribute('src', $('[data-js="imagem"]').get().value);   //para por imagem preciso setar um atributo
+      var $tdMarcaModel = aplication.createItem('td','textContent','[data-js="marca-model"]');
+      var $tdCor = aplication.createItem('td','textContent','[data-js="cor"]');
+      var $tdAno = aplication.createItem('td','textContent','[data-js="ano"]');
+      var $tdPlaca = aplication.createItem('td','textContent','[data-js="placa"]');     
+      var $image = aplication.createItem('img','src','[data-js="imagem"]');
+      
       $tdImage.appendChild($image);
-      $tdMarcaModel.textContent = $('[data-js="marca-model"]').get().value;
-      $tdCor.textContent = $('[data-js="cor"]').get().value;
-      $tdAno.textContent = $('[data-js="ano"]').get().value;
-      $tdPlaca.textContent = $('[data-js="placa"]').get().value;
-
       $tr.appendChild($tdImage);
       $tr.appendChild($tdMarcaModel);
       $tr.appendChild($tdCor);
@@ -84,7 +78,14 @@ var aplication =( function () {
       $tr.appendChild($tdPlaca);
 
       return $fragmentCar.appendChild($tr);
-    } 
+    } ,
+
+    createItem : function CreateItem(item,propritey,dom){
+      var variavel = document.createElement(item);
+      variavel[propritey] =  $(dom).get().value;
+      //variavel.setAttribute((propritey), $(dom).get().value); 
+      return variavel;  
+    }
   }
 })();
 
